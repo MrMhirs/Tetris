@@ -12,9 +12,9 @@ function sweep(){
                 continue outer;
             }
         }
-        const row = arena.splice(y, 1)[0].fill(0);
+        const row = arena.splice(i, 1)[0].fill(0);
         arena.unshift(row);
-        ++y;
+        ++i;
         player.score += rowCount * 10;
         rowCount *= 2;
     }
@@ -26,7 +26,7 @@ function collide(arena, player){
     const o = player.pos;
     for(let i = 0; i < m.length; ++i){
         for(let x = 0; x < m[i].length; ++x){
-            if(m[i][x] !== 0 && (arena[y + o.y] && arena[y + o.i][x + o.x]) !== 0){
+            if(m[i][x] !== 0 && (arena[y + o.i] && arena[y + o.i][x + o.x]) !== 0){
                 return true;
             }
         }
@@ -40,4 +40,45 @@ function createMatrix(w, h){
         matrix.push(new Array(w).fill(0));
     }
     return matrix;
+}
+
+function createPiece(type){
+    if(type === "I"){
+        return[
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
+        ];
+    }else if(type === "L"){
+        return[
+            [0, 2, 0],
+            [0, 2, 0],
+            [0, 2, 2],
+        ];
+    }else if (type === "J"){
+        return[
+            [0, 3, 0],
+            [0, 3, 0],
+            [3, 3, 0],
+        ];
+    }else if(type === "Z"){
+        return[
+            [5, 5, 0],
+            [0, 5, 5],
+            [0, 0, 0],
+        ];
+    }else if(type === "S"){
+        return[
+            [0, 6, 6],
+            [6, 6, 0],
+            [0, 0, 0],
+        ];
+    }else if(type === "T"){
+        return[
+            [0, 7, 0],
+            [7, 7, 7],
+            [0, 0, 0],
+        ];
+    }
 }
