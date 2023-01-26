@@ -82,3 +82,15 @@ function createPiece(type){
         ];
     }
 }
+
+function drawMatrix(matrix, offset){
+
+    matrix.forEach((row, i) => {
+        row.forEach((value, x) => {
+            if(value !== 0){
+                context.fillStyle = colors[value];
+                constext.fillRec(x + offset.x, y);
+            }
+        });
+    });
+}
