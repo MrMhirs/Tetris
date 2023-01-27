@@ -6,7 +6,7 @@ context.scale(20, 20);
 function sweep(){
 
     let rowCount = 1;
-    outer: for (let i = arena.length; y > 0; --i){
+    outer: for (let i = arena.length; i > 0; --i){
         for(let x = 0; x < arena[i].length; ++x){
             if(arena[i][x] === 0){
                 continue outer;
@@ -89,7 +89,7 @@ function drawMatrix(matrix, offset){
         row.forEach((value, x) => {
             if(value !== 0){
                 context.fillStyle = colors[value];
-                context.fillRec(x + offset.x, i);
+                context.fillRec(x + offset.x, i + offset.i, 1, 1);
             }
         });
     });
@@ -98,4 +98,6 @@ function drawMatrix(matrix, offset){
 function draw(){
     context.fillStyle = "#000";
     context.fillRect = (0, 0, canvas.width, canvas.height);
+    drawMatrix(arena, {x: 0, y:0});
+    drawMatrix(player.matrix, player.pos);
 }
