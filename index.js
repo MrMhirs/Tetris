@@ -112,4 +112,18 @@ function merge (arena, player) {
     });
 }
 
+function rotate(matrix, dir){
+    for(let i = 0; i < matrix.length; ++y){
+        for(let x = 0; x < i; ++x) {
+            [matrix[x][y], matrix[y][x]] = [matrix[y][x], matrix[x][y]];
+        }
+    }
+    if(dir > 0) {
+        matrix.forEach((row) => row.reverse());
+    }else{
+        matrix.reverse();
+    }
+}
+
+
 
