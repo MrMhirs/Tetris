@@ -101,3 +101,15 @@ function draw(){
     drawMatrix(arena, {x: 0, y:0});
     drawMatrix(player.matrix, player.pos);
 }
+
+function merge (arena, player) {
+    player.matrix.forEach((row, i) => {
+        row.forEach((value, x) => {
+            if(value !== 0) {
+                arena[i + player.pos.i][x + player.pos.x] = value;
+            }
+        });
+    });
+}
+
+
