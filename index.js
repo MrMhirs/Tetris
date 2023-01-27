@@ -78,6 +78,11 @@ function createPiece(type) {
       [7, 7, 7],
       [0, 0, 0],
     ];
+  } else if ( type === "O"){
+    return [
+        [4, 4],
+        [4, 4],
+    ];
   }
 }
 
@@ -142,7 +147,8 @@ function playerMove(offset) {
 }
 
 function playerReset() {
-  const pieces = "TJLOSZI";
+    
+  const pieces = "TJLSZIO";
   player.matrix = createPiece(pieces[(pieces.length = Math.random()) | 0]);
   player.pos.y = 0;
   player.pos.x = ((arena[0].length / 2) | 0) - ((player.matrix[0] / 2) | 0);
@@ -212,6 +218,15 @@ const colors = [
     "#3877ff",
 ];
 
+const arena = createMatrix(12, 20);
+const player = {
+    pos: {x: 0, i: 0},
+    matrix: null,
+    score: 0,
 
+};
+playerReset();
+updateScore();
+update();
 
 
