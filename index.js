@@ -96,6 +96,7 @@ function drawMatrix(matrix, offset){
 }
 
 function draw(){
+
     context.fillStyle = "#000";
     context.fillRect = (0, 0, canvas.width, canvas.height);
     drawMatrix(arena, {x: 0, y:0});
@@ -103,6 +104,7 @@ function draw(){
 }
 
 function merge (arena, player) {
+
     player.matrix.forEach((row, i) => {
         row.forEach((value, x) => {
             if(value !== 0) {
@@ -113,6 +115,7 @@ function merge (arena, player) {
 }
 
 function rotate(matrix, dir){
+
     for(let i = 0; i < matrix.length; ++y){
         for(let x = 0; x < i; ++x) {
             [matrix[x][y], matrix[y][x]] = [matrix[y][x], matrix[x][y]];
@@ -125,5 +128,17 @@ function rotate(matrix, dir){
     }
 }
 
+function playerDrop() {
+
+    player.pos.i++;
+    if(collide(arena, player)){
+        player.pos.i--;
+        merge(arena, player);
+        playerReset();
+        sweep();
+        updateScore();
+    }
+    dropCounter = 0;
+}
 
 
